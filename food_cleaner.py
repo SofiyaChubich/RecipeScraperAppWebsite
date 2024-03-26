@@ -1,18 +1,23 @@
-foods = open('food_names.txt', 'r+').readlines()
-backend_foodlist = open('backend_food_names.txt', "a")
-print("foods len:" + str(len(foods)))
-for food in range(len(foods) - 1):
-    current_food = foods[food]
-    if "noun" in current_food:
-        current_food = current_food[:current_food.find("noun")]
-        current_food.strip()
-        backend_foodlist.write(current_food + "\n")
-    else:
-        foods.remove(current_food)
-        food -= 1
-    print(food)
-
-backend_foodlist.close()
+'''
+    method to clean up umbrealla food txt files
+'''
+def clean_umbrella_foods(filename):
+    dirty_food = open(filename, 'r+').readlines()
+    clean_food = open('cleaned_' + filename, "a")
+    for food in range(len(dirty_food) - 1):
+        current_food = dirty_food[food]
+        if "[" in current_food:
+            current_food = current_food[:current_food.find("[")]
+            current_food.strip()
+            clean_food.write(current_food + "\n")
+        elif ",,,,,," == current_food:
+            dirty_food.remove(current_food)
+            food -= 1
+        else:
+            current_food = current_food[:current_food.find(",,,,,,")]
+            current_food.strip()
+            clean_food.write(current_food + "\n")
+    clean_food.close()
 
 '''
     create methods to convert time to minutes to keep constent on backend
@@ -60,3 +65,5 @@ def ingredient_to_dict(self, ingredients):
     pass
     
     #TODO: sort backend_food_names in order of size
+
+clean_umbrella_foods('cider_apples.txt')
