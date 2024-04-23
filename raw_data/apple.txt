@@ -11,5 +11,3 @@ green apple
 honey crisp apple
 tart apple
 tart green apple
-apple eggplant
-apple pear
