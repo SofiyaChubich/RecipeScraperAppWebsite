@@ -1895,7 +1895,6 @@ duck breast
 duck breast fillet
 duck broth
 duck confit
-duck confit ham bacon
 duck consomme
 duck demi-glace
 duck egg yolk
@@ -1927,8 +1926,6 @@ edam
 edamame
 edamame bean
 edamame shell
-edamame soy bean
-edamame soybean
 edible chrysanthemum leaf
 edible flower
 edible glitter
@@ -3759,7 +3756,6 @@ parma ham
 parma prosciutto
 parmesan
 parmesan asiago balsamic vinaigrette dressing
-parmesan basil
 parmesan bread crumb
 parmesan cheese
 parmesan crisp
@@ -3770,8 +3766,6 @@ parmigiano-reggiano
 parmigiano-reggiano cheese
 parmigiano-romano
 parsley
-parsley basil sage
-parsley basil thyme rosemary
 parsley oil
 parsley oregano garlic
 parsley sorrel fennel
