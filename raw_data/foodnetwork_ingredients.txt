@@ -4449,7 +4449,6 @@ ravioli pasta
 rayu
 recaito
 red bell pepper
-red bell pepper mozzarella
 red bordeaux
 red bull
 red capsicum
@@ -4602,7 +4601,6 @@ root
 root beer
 root ginger
 root vegetable
-root vegetable carrot beet turnip
 root vegetable chip
 root vegetable salad
 root yam
