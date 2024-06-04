@@ -2,9 +2,9 @@ import platform
 import pygame
 import pygame_gui
 import sys
-from check_ingredient_validity import *
 
-print(sys.path)
+sys.path.append('.')
+from check_ingredient_validity import *
 
 # Initialize PyGame
 pygame.init()
