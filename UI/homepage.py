@@ -233,6 +233,20 @@ def draw_recipe_search_screen():
 
     current_screen = 'recipe_search'
 
+def draw_autocorrect_popup(correction):
+    pop_up_screen = pygame.draw.rect(screen, BLACK, pygame.Rect(290, 200, 160, 100)) 
+    autocorrect_title = pygame_gui.elements.UILabel(relative_rect=pygame.Rect(300, 210, 130, 20), 
+                                               text='Did you mean to type ' + correction + '?',
+                                               manager=manager)
+    yes_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect(380, 275, 50, 15), 
+                                               text='Yes',
+                                               manager=manager)
+    no_button = pygame_gui.elements.UIButton(relative_rect=pygame.Rect(295, 275, 50, 15), 
+                                               text='No',
+                                               manager=manager)
+    
+    pass
+
 def update_items_display():
     global delete_buttons, plus_button, minus_button, value_label, value
     formatted_text = ''
