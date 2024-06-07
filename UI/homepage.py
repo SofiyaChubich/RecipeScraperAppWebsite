@@ -2,6 +2,7 @@ import platform
 import pygame
 import pygame_gui
 import sys
+import os
 
 sys.path.append('.')
 from check_ingredient_validity import *
@@ -109,7 +110,7 @@ delete_buttons = []
 def save_user_data():
     user_ingredients = open('user_ingredients.txt', "w")
     user_ingredients.truncate(0)
-    for ingredient in item_list:
+    for ingredient in item_list: #TODO: mark this bc this is error probablu
         user_ingredients.write(ingredient + "\n") #once units and quantities are added change to write(ingredient + "%" + quantity + "%" + unit + "\n")
     user_ingredients.close()
 
@@ -136,10 +137,7 @@ def create_ingredient_dict():
     ingredient_dict = dict()
     system = platform.system()
     ingredients = []
-    if system == "Windows":
-        ingredients = open('raw_data\\foodnetwork_ingredients.txt').readlines()
-    else:
-        ingredients = open('raw_data/foodnetwork_ingredients.txt').readlines()
+    ingredients = open(os.path.join('raw_data', 'foodnetwork_ingredients.txt')).read().splitlines()
     for food in ingredients:
         food = food[0:len(food) - 1] #removes the \n seen at the end of foods
         ingredient_dict[food] = [0, 0, 0, 0]
