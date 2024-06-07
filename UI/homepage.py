@@ -102,19 +102,12 @@ delete_buttons = []
 #write information item_list to file
 def save_user_data():
     user_ingredients = open('user_ingredients.txt', "w")
-    user_ingredients.truncate(0)
-    for ingredient in item_list: #TODO: mark this bc this is error probablu
-        user_ingredients.write(ingredient[0] + "%" + ingredient[1] + "\n") #once units and quantities are added change to write(ingredient + "%" + quantity + "%" + unit + "\n")
+    for ingredient, quantity in item_list:
+        user_ingredients.write(f"{ingredient}%{quantity}\n")
     user_ingredients.close()
 # Flags to control sound playback
 hovered_element = None
 hovered_element_prev = None
-
-# Write information item_list to file
-def save_user_data():
-    with open('user_ingredients.txt', "w") as user_ingredients:
-        for ingredient, quantity in item_list:
-            user_ingredients.write(f"{ingredient} - {quantity}\n")
 
 # Check to see if user_ingredients.txt is empty, and if not add to item_list upon opening the app
 def check_saved_data():
@@ -128,10 +121,9 @@ def check_saved_data():
     if user_ingredients is not None:
         for ingredient in user_ingredients:
             food_amount_unit = ingredient.split('%')
-            food_amount_unit = food_amount_unit[0] + "%" + food_amount_unit[1]
-            if food_amount_unit not in item_list:
-                item_list.append(food_amount_unit)
-                print(item_list)
+            item_list_tuple = (food_amount_unit[0], food_amount_unit[1])
+            if item_list_tuple not in item_list:
+                item_list.append(item_list_tuple)
 check_saved_data()
 save_user_data()
 
@@ -232,6 +224,7 @@ def draw_filter_search_screen():
     current_screen = 'filter_search'
     items_text_box.html_text = ''
     items_text_box.rebuild()
+    update_items_display()
 
 def draw_recipe_search_screen():
     global current_screen, back_button, recipe_title, recipe_search_button, check_boxes
