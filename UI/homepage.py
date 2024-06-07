@@ -3,6 +3,12 @@ import platform
 import pygame
 import pygame_gui
 
+import sys
+
+sys.path.append('.')
+from check_ingredient_validity import *
+
+
 # Initialize PyGame
 pygame.init()
 
@@ -116,7 +122,9 @@ def check_saved_data():
             food_amount_unit = ingredient.split('%')
             if food_amount_unit[0] not in item_list:
                 item_list.append(food_amount_unit[0].strip("\n"))
+
                 
+
 check_saved_data()
 save_user_data()
 
@@ -381,7 +389,15 @@ def handle_ui_events(event):
     elif event.type == pygame.KEYDOWN:
         if event.key == pygame.K_RETURN and current_screen == 'filter_search' and input_box.get_text():
             inputted_ingredient = input_box.get_text()
+
+            if not check_ingredient(inputted_ingredient):
+                actual_ingredient = get_nearest_food(inputted_ingredient)
+                #TODO: create a pop-up to ask user if actual ingredient is what they actually want
+                #      if it is then update inputted_ingredeint with actual_ingredient
             item_list.append((inputted_ingredient, value))
+            #TODO: once units and quantites are also sent in, call unit conversion method
+            #update_ingredient_dict() -> uncomment once units are finalized
+
             save_user_data()
             update_items_display()
             input_box.set_text('')
