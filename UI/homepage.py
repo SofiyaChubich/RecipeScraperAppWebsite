@@ -111,23 +111,24 @@ def save_user_data():
     user_ingredients = open('user_ingredients.txt', "w")
     user_ingredients.truncate(0)
     for ingredient in item_list: #TODO: mark this bc this is error probablu
-        user_ingredients.write(ingredient + "\n") #once units and quantities are added change to write(ingredient + "%" + quantity + "%" + unit + "\n")
+        user_ingredients.write(ingredient[0] + "%" + ingredient[1] + "\n") #once units and quantities are added change to write(ingredient + "%" + quantity + "%" + unit + "\n")
     user_ingredients.close()
 
 #check to see if user_ingredients.txt is empty, and if not add to item_list upon opening the app
 def check_saved_data():
     user_ingredients = []
     try:
-        user_ingredients = open('user_ingredients.txt', "x").readlines()
+        user_ingredients = open('user_ingredients.txt', "x").read().splitlines()
     except:
         print("file already exists")
-        user_ingredients = open('user_ingredients.txt', "r").readlines()
+        user_ingredients = open('user_ingredients.txt', "r").read().splitlines()
 
     if user_ingredients is not None:
         for ingredient in user_ingredients:
             food_amount_unit = ingredient.split('%')
-            if food_amount_unit[0] not in item_list:
-                item_list.append(food_amount_unit[0].strip("\n"))
+            food_amount_unit = food_amount_unit[0] + "%" + food_amount_unit[1]
+            if food_amount_unit not in item_list:
+                item_list.append(food_amount_unit)
                 print(item_list)
 check_saved_data()
 save_user_data()
@@ -135,11 +136,9 @@ save_user_data()
 #initalize empty dictionary with all ingredients
 def create_ingredient_dict():
     ingredient_dict = dict()
-    system = platform.system()
     ingredients = []
     ingredients = open(os.path.join('raw_data', 'foodnetwork_ingredients.txt')).read().splitlines()
     for food in ingredients:
-        food = food[0:len(food) - 1] #removes the \n seen at the end of foods
         ingredient_dict[food] = [0, 0, 0, 0]
     return ingredient_dict
 
@@ -151,7 +150,10 @@ def update_ingredient_dict():
         ingredient = ingredient.split("%")
         food = ingredient[0]
         amount = ingredient[1]
-        unit = ingredient[2]
+        try:
+            unit = ingredient[2]
+        except: #since units aren't currently given this should stop any potential out of range errors
+            unit = None
         if unit == "grams": 
             ingredient_dict[food][0] = amount
         elif unit == "cups":
