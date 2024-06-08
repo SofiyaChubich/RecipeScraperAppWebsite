@@ -201,8 +201,6 @@ asian marinade
 asian vinaigrette
 asorbic acid
 asparagus
-asparagus shiitake
-asparagus
 asti spumante
 au jus mix
 aubergine
@@ -222,7 +220,6 @@ avocado sauce
 ayib
 baba ganoush
 baby arugula
-baby arugula lettuce
 baby conch
 baby cuttlefish
 baby eel
@@ -3123,7 +3120,6 @@ lemongrass paste
 lentil
 lentil soup
 lettuce
-lettuce arugula
 lichee
 licorice
 licorice gumdrop
@@ -5415,7 +5411,6 @@ tollhouse cookie
 tomatillo
 tomatillo salsa
 tomato
-tomato arugula
 tomato basil pasta sauce
 tomato basil sauce
 tomato basil tortilla
